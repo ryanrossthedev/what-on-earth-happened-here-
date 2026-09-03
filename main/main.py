@@ -1,7 +1,6 @@
 import os
 import time
 import random
-import json
 
 global plr_name
 onboarding_choice = input("Do you want to use your operating system's username as your player name? [Y/n] ")
@@ -13,8 +12,7 @@ else:
 print(f"Welcome {plr_name}! Please wait while the game loads...")
 time.sleep(2)
 
-global npcs
-npcs = []
+npcs = {}
 
 def npc_service(load_npcs=False, plr_role=False):
     if load_npcs and plr_role == "Murderer":
@@ -30,6 +28,7 @@ def npc_service(load_npcs=False, plr_role=False):
                 "NPC09": {"name": "Jackson", "role": "Innocent"},
                 "NPC10": {"name": "Sophie", "role": "Innocent"}
             }
+            return npcs
     elif load_npcs and plr_role == "Constable":
             npcs = {
                 "NPC01": {"name": "Abbey", "role": "Innocent"},
@@ -43,6 +42,7 @@ def npc_service(load_npcs=False, plr_role=False):
                 "NPC09": {"name": "Jackson", "role": "Innocent"},
                 "NPC10": {"name": "Sophie", "role": "Innocent"}
             }
+            return npcs
     elif load_npcs and plr_role == "Innocent":
             npcs = {
                 "NPC01": {"name": "Abbey", "role": "Innocent"},
@@ -56,8 +56,12 @@ def npc_service(load_npcs=False, plr_role=False):
                 "NPC09": {"name": "Jackson", "role": "Murderer"},
                 "NPC10": {"name": "Sophie", "role": "Innocent"}
             }
-    return npcs
+            return npcs
+    return {}
 
+def get_npcs(npcs_var):
+    for npc in npcs_var.values():
+        print(npc["name"])
 
 plr_chance = int(random.randint(0, 10))
 if plr_chance == 1:
@@ -68,5 +72,5 @@ else:
     plr_role = "Innocent"
 print(f"You are {plr_role}")
 
-npc_service(load_npcs=True, plr_role=plr_role)
-# get_npcs(npcs)
+npcs_var = npc_service(load_npcs=True, plr_role=plr_role)
+get_npcs(npcs_var)
