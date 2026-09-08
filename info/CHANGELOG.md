@@ -1,3 +1,11 @@
+commit 784f774198201cb24dff5bf931f86d67747d10d4
+Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+Date:   Tue Sep 8 11:29:42 2026 +1000
+
+    Amended README.md, added CHANGELOG.md, added messages delivered to the player based on their role when the round starts.
+    
+    Signed-off-by: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+
 commit 1347dfd8086d9b07a00145050b9ef91c209f5bbe
 Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
 Date:   Fri Sep 4 09:46:33 2026 +1000
