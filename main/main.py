@@ -78,7 +78,34 @@ def get_npcs(npcs_var):
     for npc in npcs_var.values():
         print(npc["name"])
 
-plr_chance = int(random.randint(0, 10))
+def main(plr_role, npcs_var):
+    if plr_role == "Innocent":
+        print(f"Initiating game round for the role of {plr_role}!")
+        print("There are a total of ten NPCs in the game. Your objective is to stay alert and survive without getting murdered. Good luck.")
+    elif plr_role == "Constable":
+        print(f"Initiating game round for the role of {plr_role}!")
+        print("There are a total of ten NPCs in the game. Your objective is to figure out who the murderer is and arrest them. Good luck.")
+    elif plr_role == "Murderer":
+        print(f"Initiating game round for the role of {plr_role}!")
+        print("There are a total of ten NPCs in the game. Your objective is to murder each and every one of them. Good luck.")
+        if random.choice(list(npcs_var.values())) == "NPC05":
+            choice = input("It is nighttime. You've spotted Eagle roaming around the hallways. Do you wish to take them down? [Y/n]")
+            if choice == "Y":
+                if int(random.randint(1, 3)) == 1:
+                    print("Oops. You tried to murder the Constable and you failed to silence them. You were arrested.")
+                    time.sleep(5)
+                else:
+                    print("Woah. You successfully murdered the Constable without getting arrested! Well done!")
+                    time.sleep(5)
+            else:
+                if int(random.randint(1, 50)) == 1:
+                    print("You tried to murder an innocent and they got away. You were found out.")
+                    time.sleep(5)
+                else:
+                    print("You successfully murdered an Innocent!")
+                    time.sleep(5)
+
+plr_chance = int(random.randint(1, 3))
 if plr_chance == 1:
     plr_role = "Murderer"
 elif plr_chance == 2:
@@ -91,9 +118,10 @@ npcs_var = npc_service(load_npcs=True, plr_role=plr_role)
 get_npcs(npcs_var)
 
 print(logo)
-time.sleep(5)
+time.sleep(2)
 print(f"Welcome {plr_name}.")
 print(f"The objective of this game is quite simple. As you could probably tell, this game is a Murder Mystery game. If you are Innocent, try your very best not to get murdered. If you are the Constable, you need to arrest the Murderer without messing up. And finally, if you are the Murderer... you need to get rid of every player until you are the last standing.")
+input("Press any key to continue.")
 print("The game will start shortly. Please exit the script if you do not wish to continue... (5)")
 time.sleep(1)
 print("The game will start shortly. Please exit the script if you do not wish to continue... (4)")
@@ -106,3 +134,5 @@ print("The game will start shortly. Please exit the script if you do not wish to
 time.sleep(1)
 print("The game will start shortly. Please exit the script if you do not wish to continue... (0)")
 time.sleep(1)
+
+main(plr_role, npcs_var)
