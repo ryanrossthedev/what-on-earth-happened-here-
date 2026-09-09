@@ -1,3 +1,25 @@
+commit 4190edf118ad7a2f4c3575573c499b524a991a4f
+Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+Date:   Wed Sep 9 12:32:16 2026 +1000
+
+    Added ability for script to show current version, removed .gitignore as it was not needed.
+    
+    Signed-off-by: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+
+commit 51176361dbe164ee6213a460a8bf16d4355177b1
+Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+Date:   Wed Sep 9 11:28:50 2026 +1000
+
+    Added shields.io intergration with README.md
+    
+    Signed-off-by: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+
+commit a93e0df89b2f579e0dd810507bf8312729cb8657
+Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+Date:   Tue Sep 8 11:32:23 2026 +1000
+
+    CHANGELOG.md changes.
+
 commit 784f774198201cb24dff5bf931f86d67747d10d4
 Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
 Date:   Tue Sep 8 11:29:42 2026 +1000

@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import random
 logo = r"""
@@ -28,6 +29,13 @@ else:
 
 print(f"Welcome {plr_name}! Please wait while the game loads...")
 time.sleep(2)
+
+def get_version():
+    with open("./info/CHANGELOG.md", "r", encoding="utf-8") as file:
+        version = file.readline().strip()
+
+    return version
+
 npcs = {}
 def npc_service(load_npcs=False, plr_role=False):
     if load_npcs and plr_role == "Murderer":
@@ -89,21 +97,29 @@ def main(plr_role, npcs_var):
         print(f"Initiating game round for the role of {plr_role}!")
         print("There are a total of ten NPCs in the game. Your objective is to murder each and every one of them. Good luck.")
         if random.choice(list(npcs_var.values())) == "NPC05":
-            choice = input("It is nighttime. You've spotted Eagle roaming around the hallways. Do you wish to take them down? [Y/n]")
+            choice = input("It is nighttime. You've spotted someone roaming around the hallways. Do you wish to take them down? [Y/n]")
             if choice == "Y":
                 if int(random.randint(1, 3)) == 1:
                     print("Oops. You tried to murder the Constable and you failed to silence them. You were arrested.")
                     time.sleep(5)
+                    return
                 else:
                     print("Woah. You successfully murdered the Constable without getting arrested! Well done!")
                     time.sleep(5)
             else:
+                print("You didn't murder anyone.")
+        else:
+            choice = input("It is nighttime. You've spotted someone roaming around the hallways. Do you wish to take them down? [Y/n]")
+            if choice == "Y":
                 if int(random.randint(1, 50)) == 1:
                     print("You tried to murder an innocent and they got away. You were found out.")
                     time.sleep(5)
+                    return
                 else:
                     print("You successfully murdered an Innocent!")
                     time.sleep(5)
+            else:
+                print("You didn't murder anyone.")
 
 plr_chance = int(random.randint(1, 3))
 if plr_chance == 1:
@@ -118,6 +134,8 @@ npcs_var = npc_service(load_npcs=True, plr_role=plr_role)
 get_npcs(npcs_var)
 
 print(logo)
+version2 = get_version()
+print(version2)
 time.sleep(2)
 print(f"Welcome {plr_name}.")
 print(f"The objective of this game is quite simple. As you could probably tell, this game is a Murder Mystery game. If you are Innocent, try your very best not to get murdered. If you are the Constable, you need to arrest the Murderer without messing up. And finally, if you are the Murderer... you need to get rid of every player until you are the last standing.")
