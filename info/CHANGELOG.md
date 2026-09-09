@@ -1,4 +1,12 @@
-commit 4190edf118ad7a2f4c3575573c499b524a991a4f
+commit 0dbe08b2f8eed9194accdf6248d032879750d542
+Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+Date:   Wed Sep 9 12:39:32 2026 +1000
+
+    Deleted unused binary executable and C source file, renamed main.py's parent folder from /main/ to /src/
+    
+    Signed-off-by: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+
+commit 174ea641476e5688e1f8d3e9b80a4e00e0e1a87b
 Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
 Date:   Wed Sep 9 12:32:16 2026 +1000
 
