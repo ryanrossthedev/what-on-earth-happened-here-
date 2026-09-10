@@ -1,4 +1,12 @@
-commit 0dbe08b2f8eed9194accdf6248d032879750d542
+commit 9bb085fd535bf4b8f391353f5cd2f0c9fdf9b8a8
+Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+Date:   Thu Sep 10 22:06:14 2026 +1000
+
+    Removed all other roles to simplify game design, added bulk of the mechanics for the murderer gameplay. Other tweaks and improvements.
+    
+    Signed-off-by: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+
+commit 93f0d7a3ca67db3216bba86e293f76c458a5e81e
 Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
 Date:   Wed Sep 9 12:39:32 2026 +1000
 

@@ -32,113 +32,118 @@ time.sleep(2)
 
 def get_version():
     with open("./info/CHANGELOG.md", "r", encoding="utf-8") as file:
+        # reads the first line of CHANGELOG.md
         version = file.readline().strip()
 
     return version
 
 npcs = {}
-def npc_service(load_npcs=False, plr_role=False):
-    if load_npcs and plr_role == "Murderer":
-            npcs = {
-                "NPC01": {"name": "Abbey", "role": "Innocent"},
-                "NPC02": {"name": "Garry", "role": "Innocent"},
-                "NPC03": {"name": "Ryan", "role": "Innocent"},
-                "NPC04": {"name": "Max", "role": "Innocent"},
-                "NPC05": {"name": "Eagle", "role": "Constable"},
-                "NPC06": {"name": "Leo", "role": "Innocent"},
-                "NPC07": {"name": "Bryan", "role": "Innocent"},
-                "NPC08": {"name": "Derrick", "role": "Innocent"},
-                "NPC09": {"name": "Jackson", "role": "Innocent"},
-                "NPC10": {"name": "Sophie", "role": "Innocent"}
-            }
-            return npcs
-    elif load_npcs and plr_role == "Constable":
-            npcs = {
-                "NPC01": {"name": "Abbey", "role": "Innocent"},
-                "NPC02": {"name": "Garry", "role": "Murderer"},
-                "NPC03": {"name": "Ryan", "role": "Innocent"},
-                "NPC04": {"name": "Max", "role": "Innocent"},
-                "NPC05": {"name": "Eagle", "role": "Innocent"},
-                "NPC06": {"name": "Leo", "role": "Innocent"},
-                "NPC07": {"name": "Bryan", "role": "Innocent"},
-                "NPC08": {"name": "Derrick", "role": "Innocent"},
-                "NPC09": {"name": "Jackson", "role": "Innocent"},
-                "NPC10": {"name": "Sophie", "role": "Innocent"}
-            }
-            return npcs
-    elif load_npcs and plr_role == "Innocent":
-            npcs = {
-                "NPC01": {"name": "Abbey", "role": "Innocent"},
-                "NPC02": {"name": "Garry", "role": "Innocent"},
-                "NPC03": {"name": "Ryan", "role": "Innocent"},
-                "NPC04": {"name": "Max", "role": "Innocent"},
-                "NPC05": {"name": "Eagle", "role": "Constable"},
-                "NPC06": {"name": "Leo", "role": "Innocent"},
-                "NPC07": {"name": "Bryan", "role": "Innocent"},
-                "NPC08": {"name": "Derrick", "role": "Innocent"},
-                "NPC09": {"name": "Jackson", "role": "Murderer"},
-                "NPC10": {"name": "Sophie", "role": "Innocent"}
-            }
-            return npcs
-    return {}
+global npcs_dead
+npcs_dead = 0
+global plr_alive
+plr_alive = True
+global plr_arrested
+plr_arrested = False
+
+# Loads NPC varients that the Murderer can encounter
+def npc_service(load_npcs=False):
+    npcs = {
+        "NPC01": {"name": "Abbey", "role": "Innocent"},
+        "NPC02": {"name": "Karen", "role": "Karen"},
+        "NPC03": {"name": "Ryan", "role": "Innocent"},
+        "NPC04": {"name": "Max", "role": "Innocent"},
+        "NPC05": {"name": "Eagle", "role": "Constable"},
+        "NPC06": {"name": "Leo", "role": "Innocent"},
+        "NPC07": {"name": "Bryan", "role": "Innocent"},
+        "NPC08": {"name": "Derrick", "role": "Innocent"},
+        "NPC09": {"name": "Jackson", "role": "Innocent"},
+        "NPC10": {"name": "Sophie", "role": "Artist"}
+    }
+    return npcs
 
 def get_npcs(npcs_var):
     for npc in npcs_var.values():
         print(npc["name"])
 
-def main(plr_role, npcs_var):
-    if plr_role == "Innocent":
-        print(f"Initiating game round for the role of {plr_role}!")
-        print("There are a total of ten NPCs in the game. Your objective is to stay alert and survive without getting murdered. Good luck.")
-    elif plr_role == "Constable":
-        print(f"Initiating game round for the role of {plr_role}!")
-        print("There are a total of ten NPCs in the game. Your objective is to figure out who the murderer is and arrest them. Good luck.")
-    elif plr_role == "Murderer":
-        print(f"Initiating game round for the role of {plr_role}!")
-        print("There are a total of ten NPCs in the game. Your objective is to murder each and every one of them. Good luck.")
-        if random.choice(list(npcs_var.values())) == "NPC05":
-            choice = input("It is nighttime. You've spotted someone roaming around the hallways. Do you wish to take them down? [Y/n]")
-            if choice == "Y":
-                if int(random.randint(1, 3)) == 1:
-                    print("Oops. You tried to murder the Constable and you failed to silence them. You were arrested.")
-                    time.sleep(5)
-                    return
+def main(plr_alive, plr_arrested, npcs_dead, npcs_var):
+        print(f"Initiating game round...")
+        print(f"Welcome {plr_name}. Your objective is to murder as many people you can without getting caught. Some NPCs might be a tiny bit more vigilent than others, so be careful. Good luck.")
+        while plr_alive == True:
+            # Establishs an NPC that the player can either attempt to murder or abstain from murdering
+            npc_target = random.choice(list(npcs_var.values()))
+            # Checks to see iof the NPC is the Constable varient.
+            if npc_target == "NPC05":
+                choice = input("It is nighttime. You've spotted someone going for a late night walk. Are you going to try murder them? [Y/n] ")
+                if choice == "Y":
+                    if int(random.randint(1, 3)) == 1:
+                        time.sleep(1)
+                        plr_alive = False
+                        plr_arrested = True
+                        print(f"Oops. You tried to murder a Constable and you failed to silence them. You were arrested. You sucessfully murdered {npcs_dead} people!")
+                        return plr_alive
+                    else:
+                        print("You successfully murdered a Constable without getting arrested.")
+                        time.sleep(1)
+                        npcs_dead = npcs_dead + 1
+                        print(f"You've currently murdered {npcs_dead} people.")
                 else:
-                    print("Woah. You successfully murdered the Constable without getting arrested! Well done!")
-                    time.sleep(5)
+                    print("You didn't murder anyone.")
+            elif npc_target == "NPC02":
+                            choice = input("It is nighttime. You've spotted someone going for a late night walk. Are you going to try murder them? [Y/n] ")
+                            if choice == "Y":
+                                if int(random.randint(1, 3)) == 1:
+                                    time.sleep(1)
+                                    plr_alive = False
+                                    plr_arrested = True
+                                    print(f"Oops. You tried to murder Karen. She asked to speak to your manager and you died of cringe. You sucessfully murdered {npcs_dead} people!")
+                                    return plr_alive
+                                else:
+                                    print("You murdered Karen. She'll be asking to see heaven's manager now...")
+                                    time.sleep(1)
+                                    npcs_dead = npcs_dead + 1
+                                    print(f"You've currently murdered {npcs_dead} people.")
+                            else:
+                                print("You didn't murder anyone.")
+            elif npc_target == "NPC10":
+                            choice = input("It is nighttime. You've spotted someone going for a late night walk. Are you going to try murder them? [Y/n] ")
+                            if choice == "Y":
+                                if int(random.randint(1, 3)) == 1:
+                                    time.sleep(1)
+                                    plr_alive = False
+                                    plr_arrested = True
+                                    print(f"Oops. You tired to murder Sophie the Artist.She sat you down and made you wait for a goofy ahh portrait of yourself for so long, you died of an uneventful heart attack. You sucessfully murdered {npcs_dead} people!")
+                                    return plr_alive
+                                else:
+                                    print("You murdered Sophie the Artist. What a shame.")
+                                    time.sleep(1)
+                                    npcs_dead = npcs_dead + 1
+                                    print(f"You've currently murdered {npcs_dead} people.")
+                            else:
+                                print("You didn't murder anyone.")
             else:
-                print("You didn't murder anyone.")
-        else:
-            choice = input("It is nighttime. You've spotted someone roaming around the hallways. Do you wish to take them down? [Y/n]")
-            if choice == "Y":
-                if int(random.randint(1, 50)) == 1:
-                    print("You tried to murder an innocent and they got away. You were found out.")
-                    time.sleep(5)
-                    return
+                choice = input("It is nighttime. You've spotted someone going for a late night walk. Are you going to try murder them? [Y/n] ")
+                if choice == "Y":
+                    if int(random.randint(1, 15)) == 1:
+                        time.sleep(1)
+                        plr_alive = False
+                        print(f"You tried to murder an innocent and they got away. You were found out. You successfully murdered {npcs_dead} people!")
+                        return plr_alive
+                    else:
+                        print("You successfully murdered an Innocent!")
+                        time.sleep(1)
+                        npcs_dead = npcs_dead + 1
+                        print(f"You've currently murdered {npcs_dead} people.")
                 else:
-                    print("You successfully murdered an Innocent!")
-                    time.sleep(5)
-            else:
-                print("You didn't murder anyone.")
+                    print("You didn't murder anyone.")
 
-plr_chance = int(random.randint(1, 3))
-if plr_chance == 1:
-    plr_role = "Murderer"
-elif plr_chance == 2:
-    plr_role = "Constable"
-else:
-    plr_role = "Innocent"
-print(f"You are {plr_role}")
-
-npcs_var = npc_service(load_npcs=True, plr_role=plr_role)
+npcs_var = npc_service(load_npcs=True)
 get_npcs(npcs_var)
-
 print(logo)
 version2 = get_version()
 print(version2)
 time.sleep(2)
 print(f"Welcome {plr_name}.")
-print(f"The objective of this game is quite simple. As you could probably tell, this game is a Murder Mystery game. If you are Innocent, try your very best not to get murdered. If you are the Constable, you need to arrest the Murderer without messing up. And finally, if you are the Murderer... you need to get rid of every player until you are the last standing.")
+print(f"The objective of this game is to keep murdering people for as long as you can until you eventually get caught. Further insturctions will be provided.")
 input("Press any key to continue.")
 print("The game will start shortly. Please exit the script if you do not wish to continue... (5)")
 time.sleep(1)
@@ -152,5 +157,4 @@ print("The game will start shortly. Please exit the script if you do not wish to
 time.sleep(1)
 print("The game will start shortly. Please exit the script if you do not wish to continue... (0)")
 time.sleep(1)
-
-main(plr_role, npcs_var)
+main(plr_alive, plr_arrested, npcs_dead, npcs_var)
