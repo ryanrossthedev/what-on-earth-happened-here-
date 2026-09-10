@@ -1,4 +1,12 @@
-commit 9bb085fd535bf4b8f391353f5cd2f0c9fdf9b8a8
+commit 077c8a745c03714203cb09db7fb9be637114019f
+Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+Date:   Fri Sep 11 09:05:58 2026 +1000
+
+    Removed shields.io from README.md, added Karen and Sophie the Artist as special NPC varients one may encounter.
+    
+    Signed-off-by: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+
+commit 8b94415206f491161f0b83ca497bd8a4e26e4cae
 Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
 Date:   Thu Sep 10 22:06:14 2026 +1000
 

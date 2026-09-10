@@ -37,6 +37,7 @@ def get_version():
 
     return version
 
+# define variables
 npcs = {}
 global npcs_dead
 npcs_dead = 0
