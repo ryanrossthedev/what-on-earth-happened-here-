@@ -1,4 +1,12 @@
-commit 077c8a745c03714203cb09db7fb9be637114019f
+commit c4a7174757bf39300d873eef57ccdcd3af2a9649
+Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+Date:   Fri Sep 11 09:18:37 2026 +1000
+
+    Cleaned up imported libraries and fixed get_version() only working on UNIX-like Operating Systems.
+    
+    Signed-off-by: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+
+commit 2a053886ba5e00c8e068b399296d288bac6fcc9b
 Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
 Date:   Fri Sep 11 09:05:58 2026 +1000
 

@@ -1,7 +1,7 @@
 import os
-import sys
 import time
 import random
+from pathlib import Path
 logo = r"""
 __        ___   _    _  _____    ___  _   _   _____    _    ____ _____ _   _ 
 \ \      / / | | |  / \|_   _|  / _ \| \ | | | ____|  / \  |  _ \_   _| | | |
@@ -31,7 +31,11 @@ print(f"Welcome {plr_name}! Please wait while the game loads...")
 time.sleep(2)
 
 def get_version():
-    with open("./info/CHANGELOG.md", "r", encoding="utf-8") as file:
+    # Path() automatically fixes the dots and slashes for Windows
+    path = Path("./info/CHANGELOG.md")
+    
+    # opens said file
+    with open(path, "r", encoding="utf-8") as file:
         # reads the first line of CHANGELOG.md
         version = file.readline().strip()
 
@@ -62,6 +66,7 @@ def npc_service(load_npcs=False):
     }
     return npcs
 
+# Fetches the names for each NPC in the NPC dictionary
 def get_npcs(npcs_var):
     for npc in npcs_var.values():
         print(npc["name"])
