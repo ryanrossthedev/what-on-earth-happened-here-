@@ -2,7 +2,7 @@
 ## A text-based Murder Mystery game written in Python3
 
 ### MAIN GAME INSTRUCTIONS:
-*"The objective of this game is quite simple. As you could probably tell, this game is a Murder Mystery game. If you are Innocent, try your very best not to get murdered. If you are the Constable, you need to arrest the Murderer without messing up. And finally, if you are the Murderer... you need to get rid of every player until you are the last standing."*
+*"Welcome player. Your objective is to murder as many people you can without getting caught. Some NPCs might be a tiny bit more vigilent than others, so be careful. Good luck."*
 
 ### LICENSING:
 > [!IMPORTANT]
@@ -10,3 +10,6 @@
 
 ### INFORMATION REGARDING THE CHANGELOG:
 *"The CHANGELOG.md file is a dump of `git log`. This could change in the near future if I believe it is necessary to develop a professional changelog system for this project."*
+
+### UPDATES:
+Updates to this game may be pushed to a remote repository on GitHub. Please run `git pull https://github.com/ryanrossthedev/what-on-earth-happened-here- main` to fetch any updates from the remote repository.

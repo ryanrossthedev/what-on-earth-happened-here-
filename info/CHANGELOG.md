@@ -1,4 +1,12 @@
-commit c4a7174757bf39300d873eef57ccdcd3af2a9649
+commit 41828478ae0812346166b890669e0570865b841d
+Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+Date:   Fri Sep 11 10:08:33 2026 +1000
+
+    Added more comments to the script.
+    
+    Signed-off-by: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
+
+commit 9a92cb01d8906d24bea434f57de8b4985f0d49ea
 Author: ryanrossthedev <dev.ryanross.ryanstudios@proton.me>
 Date:   Fri Sep 11 09:18:37 2026 +1000
 

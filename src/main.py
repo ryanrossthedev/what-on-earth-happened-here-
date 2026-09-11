@@ -21,10 +21,12 @@ __        ___   _    _  _____    ___  _   _   _____    _    ____ _____ _   _
 """
 
 global plr_name
+# if the player inputs "Y" then the script fetches the player's Operating System profile username and uses it as the player's player name
 onboarding_choice = input("Do you want to use your operating system's username as your player name? [Y/n] ")
 if onboarding_choice == "Y":
     plr_name = os.getlogin()
 else:
+    # Lets the player otherwise customize their player name
     plr_name = input("What should I call you? ")
 
 print(f"Welcome {plr_name}! Please wait while the game loads...")
@@ -74,6 +76,7 @@ def get_npcs(npcs_var):
 def main(plr_alive, plr_arrested, npcs_dead, npcs_var):
         print(f"Initiating game round...")
         print(f"Welcome {plr_name}. Your objective is to murder as many people you can without getting caught. Some NPCs might be a tiny bit more vigilent than others, so be careful. Good luck.")
+        # Keeps the round going so long as the player is alive
         while plr_alive == True:
             # Establishs an NPC that the player can either attempt to murder or abstain from murdering
             npc_target = random.choice(list(npcs_var.values()))
@@ -81,15 +84,18 @@ def main(plr_alive, plr_arrested, npcs_dead, npcs_var):
             if npc_target == "NPC05":
                 choice = input("It is nighttime. You've spotted someone going for a late night walk. Are you going to try murder them? [Y/n] ")
                 if choice == "Y":
+                    # defines the likelyhood of the player successfully murdering this specific NPC varient
                     if int(random.randint(1, 3)) == 1:
                         time.sleep(1)
                         plr_alive = False
                         plr_arrested = True
                         print(f"Oops. You tried to murder a Constable and you failed to silence them. You were arrested. You sucessfully murdered {npcs_dead} people!")
+                        # ends the script if the player dies/gets caught
                         return plr_alive
                     else:
                         print("You successfully murdered a Constable without getting arrested.")
                         time.sleep(1)
+                        # Increases NPC death count by one
                         npcs_dead = npcs_dead + 1
                         print(f"You've currently murdered {npcs_dead} people.")
                 else:
@@ -149,8 +155,10 @@ version2 = get_version()
 print(version2)
 time.sleep(2)
 print(f"Welcome {plr_name}.")
+# a short description of the game
 print(f"The objective of this game is to keep murdering people for as long as you can until you eventually get caught. Further insturctions will be provided.")
 input("Press any key to continue.")
+# a simple countdown
 print("The game will start shortly. Please exit the script if you do not wish to continue... (5)")
 time.sleep(1)
 print("The game will start shortly. Please exit the script if you do not wish to continue... (4)")
@@ -163,4 +171,5 @@ print("The game will start shortly. Please exit the script if you do not wish to
 time.sleep(1)
 print("The game will start shortly. Please exit the script if you do not wish to continue... (0)")
 time.sleep(1)
+# calls main game function
 main(plr_alive, plr_arrested, npcs_dead, npcs_var)
